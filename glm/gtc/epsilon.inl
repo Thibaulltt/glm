@@ -40,6 +40,12 @@ namespace glm
 		return lessThan(abs(x - y), vec<L, T, Q>(epsilon));
 	}
 
+	template <length_t C, length_t R, typename T, qualifier Q>
+	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, T const& epsilon)
+	{
+		return lessThan(abs(x - y), mat<C, R, T, Q>(epsilon));
+	}
+
 	template<>
 	GLM_FUNC_QUALIFIER bool epsilonNotEqual(float const& x, float const& y, float const& epsilon)
 	{
@@ -62,6 +68,12 @@ namespace glm
 	GLM_FUNC_QUALIFIER vec<L, bool, Q> epsilonNotEqual(vec<L, T, Q> const& x, vec<L, T, Q> const& y, vec<L, T, Q> const& epsilon)
 	{
 		return greaterThanEqual(abs(x - y), vec<L, T, Q>(epsilon));
+	}
+
+	template <length_t C, length_t R, typename T, qualifier Q>
+	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonNotEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, T const& epsilon)
+	{
+		return greaterThanEqual(abs(x - y), mat<C, R, T, Q>(epsilon));
 	}
 
 	template<typename T, qualifier Q>
