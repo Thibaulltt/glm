@@ -2,6 +2,8 @@
 
 // Dependency:
 #include "../vector_relational.hpp"
+#include "../ext/matrix_elementwise_comparison.hpp"
+#include "../ext/matrix_common.hpp"
 #include "../common.hpp"
 
 namespace glm
@@ -43,7 +45,13 @@ namespace glm
 	template <length_t C, length_t R, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, T const& epsilon)
 	{
-		return lessThan(abs(x - y), mat<C, R, T, Q>(epsilon));
+		return elementwise::lessThan(abs(x - y), mat<C, R, T, Q>(epsilon));
+	}
+
+	template <length_t C, length_t R, typename T, qualifier Q>
+	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, mat<C, R, T, Q> const& epsilon)
+	{
+		return elementwise::lessThan(abs(x - y), mat<C, R, T, Q>(epsilon));
 	}
 
 	template<>
@@ -70,10 +78,16 @@ namespace glm
 		return greaterThanEqual(abs(x - y), vec<L, T, Q>(epsilon));
 	}
 
-	template <length_t C, length_t R, typename T, qualifier Q>
+	template<length_t C, length_t R, typename T, qualifier Q>
 	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonNotEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, T const& epsilon)
 	{
-		return greaterThanEqual(abs(x - y), mat<C, R, T, Q>(epsilon));
+		return elementwise::greaterThanEqual(abs(x - y), mat<C, R, T, Q>(epsilon));
+	}
+
+	template<length_t C, length_t R, typename T, qualifier Q>
+	GLM_FUNC_QUALIFIER mat<C, R, bool, Q> epsilonNotEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y, mat<C, R, T, Q> const& epsilon)
+	{
+		return elementwise::greaterThanEqual(abs(x - y), mat<C, R, T, Q>(epsilon));
 	}
 
 	template<typename T, qualifier Q>

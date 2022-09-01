@@ -21,9 +21,12 @@
 #	pragma message("GLM: GLM_EXT_matrix_elementwise_comparison extension included")
 #endif
 
-namespace glm {
-
-namespace elementwise {
+namespace glm
+{
+namespace elementwise
+{
+	/// @addtogroup ext_matrix_elementwise_comparison
+	/// @{
 
 	/// Perform a element-wise comparison of x < y.
 	/// Returns true for all indices of the matrix where x < y.
@@ -85,8 +88,8 @@ namespace elementwise {
 	template<length_t C, length_t R, typename T, qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR mat<C, R, bool, Q> notEqual(mat<C, R, T, Q> const& x, mat<C, R, T, Q> const& y);
 
+	/// @}
 }// namespace elementwise
-
 }// namespace glm
 
 #include "matrix_elementwise_comparison.inl"
